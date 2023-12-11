@@ -24,9 +24,11 @@ body {
 .article-card {
   text-align: center;
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   width: 500px;
+  height: 600px;
   margin: 50px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.226);
