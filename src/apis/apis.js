@@ -12,3 +12,14 @@ export function GetAllArticles() {
       console.log(err);
     });
 }
+
+export function GetSingleArticle(id) {
+  return api
+    .get(`/api/articles/${id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

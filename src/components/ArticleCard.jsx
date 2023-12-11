@@ -1,5 +1,15 @@
 import Button from "@mui/material/Button";
-export default function ArticleCard({ article }) {
+import { GetSingleArticle } from "../apis/apis";
+import { useEffect, useState } from "react";
+import SingleArticle from "./SingleArticle";
+import { Link } from "react-router-dom";
+
+export default function ArticleCard({ article, setViewSingleArticle, setId }) {
+  const handleClick = () => {
+    setViewSingleArticle(true);
+    setId(article.article_id);
+  };
+
   return (
     <div className="article-card">
       <div>
@@ -14,7 +24,14 @@ export default function ArticleCard({ article }) {
       <div>
         <p className="card-title"> Topic</p>
         <p className="card-sub-title">{article.topic}</p>
-        <Button variant="contained" style={{ marginBottom: "20px" }}>
+
+        <Button
+          variant="contained"
+          style={{ marginBottom: "20px" }}
+          onClick={() => {
+            handleClick(article.article_id);
+          }}
+        >
           View Article
         </Button>
       </div>
