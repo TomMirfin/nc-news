@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SingleArticle from "./SingleArticle";
 import { Link } from "react-router-dom";
 
-export default function ArticleCard({ article, setViewSingleArticle, setId }) {
+export default function ArticleCard({ article }) {
   return (
     <div className="article-card">
       <div>

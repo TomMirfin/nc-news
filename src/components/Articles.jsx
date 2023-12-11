@@ -5,7 +5,7 @@ import SingleArticle from "./SingleArticle";
 
 function Articles() {
   const [articles, setArticles] = useState([]);
-  const [viewSingleArticle, setViewSingleArticle] = useState(false);
+
   const [id, setId] = useState(0);
 
   useEffect(() => {
@@ -16,24 +16,17 @@ function Articles() {
 
   return (
     <section className="article-grid">
-      {viewSingleArticle ? (
-        <div className="single-aticle-container">
-          <SingleArticle id={id} setViewSingleArticle={setViewSingleArticle} />
-        </div>
-      ) : (
-        <div className="article-list">
-          {articles.map((article) => {
-            return (
-              <ArticleCard
-                article={article}
-                key={article.id}
-                setViewSingleArticle={setViewSingleArticle}
-                setId={setId}
-              />
-            );
-          })}
-        </div>
-      )}
+      <div className="single-aticle-container">
+        <SingleArticle id={id} />
+      </div>
+
+      <div className="article-list">
+        {articles.map((article) => {
+          return (
+            <ArticleCard article={article} key={article.id} setId={setId} />
+          );
+        })}
+      </div>
     </section>
   );
 }

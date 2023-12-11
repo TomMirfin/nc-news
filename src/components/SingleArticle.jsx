@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { GetSingleArticle } from "../apis/apis";
 import { Link } from "react-router-dom";
 
-function SingleArticle({ id, setViewSingleArticle }) {
+function SingleArticle({ id }) {
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
 
