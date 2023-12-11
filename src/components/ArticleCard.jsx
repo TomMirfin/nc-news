@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SingleArticle from "./SingleArticle";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
+import { Fade } from "react-awesome-reveal";
 export default function ArticleCard({ article, setViewSingleArticle, setId }) {
   const handleClick = () => {
     setViewSingleArticle(true);
@@ -12,31 +12,33 @@ export default function ArticleCard({ article, setViewSingleArticle, setId }) {
   };
 
   return (
-    <div className="article-card">
-      <div>
-        <p className="card-title"> Title </p>
-        <p className="card-sub-title">{article.title}</p>
+    <Fade>
+      <div className="article-card">
+        <div>
+          <p className="card-title"> Title </p>
+          <p className="card-sub-title">{article.title}</p>
+        </div>
+        <div>
+          <p className="card-title">Author: </p>
+          <p className="card-sub-title"> {article.author}</p>
+        </div>
+        <img src={article.article_img_url} alt="" />
+        <div>
+          <p className="card-title"> Topic</p>
+          <p className="card-sub-title">{article.topic}</p>
+          <Link to={`/articles/${article.article_id}`}>
+            <Button
+              variant="contained"
+              style={{ marginBottom: "20px" }}
+              onClick={() => {
+                handleClick(article.article_id);
+              }}
+            >
+              View Article
+            </Button>
+          </Link>
+        </div>
       </div>
-      <div>
-        <p className="card-title">Author: </p>
-        <p className="card-sub-title"> {article.author}</p>
-      </div>
-      <img src={article.article_img_url} alt="" />
-      <div>
-        <p className="card-title"> Topic</p>
-        <p className="card-sub-title">{article.topic}</p>
-        <Link to={`/articles/${article.article_id}`}>
-          <Button
-            variant="contained"
-            style={{ marginBottom: "20px" }}
-            onClick={() => {
-              handleClick(article.article_id);
-            }}
-          >
-            View Article
-          </Button>
-        </Link>
-      </div>
-    </div>
+    </Fade>
   );
 }
