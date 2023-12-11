@@ -7,7 +7,7 @@ function SingleArticle({ setViewSingleArticle }) {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
-  console.log(id);
+
   const handleClick = () => {
     setViewSingleArticle(false);
   };
@@ -21,7 +21,7 @@ function SingleArticle({ setViewSingleArticle }) {
   }, []);
   console.log(article);
   if (loading) {
-    return <p className="single-article">Loading your article</p>;
+    return <p className="loading">Loading your article</p>;
   }
 
   return (
