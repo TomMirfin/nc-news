@@ -5,11 +5,6 @@ import SingleArticle from "./SingleArticle";
 import { Link } from "react-router-dom";
 
 export default function ArticleCard({ article, setViewSingleArticle, setId }) {
-  const handleClick = () => {
-    setViewSingleArticle(true);
-    setId(article.article_id);
-  };
-
   return (
     <div className="article-card">
       <div>
@@ -24,16 +19,11 @@ export default function ArticleCard({ article, setViewSingleArticle, setId }) {
       <div>
         <p className="card-title"> Topic</p>
         <p className="card-sub-title">{article.topic}</p>
-
-        <Button
-          variant="contained"
-          style={{ marginBottom: "20px" }}
-          onClick={() => {
-            handleClick(article.article_id);
-          }}
-        >
-          View Article
-        </Button>
+        <Link to={`/articles/${article.article_id}`}>
+          <Button variant="contained" style={{ marginBottom: "20px" }}>
+            View Article
+          </Button>
+        </Link>
       </div>
     </div>
   );

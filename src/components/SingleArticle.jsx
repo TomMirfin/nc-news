@@ -1,14 +1,11 @@
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { GetSingleArticle } from "../apis/apis";
+import { Link } from "react-router-dom";
 
 function SingleArticle({ id, setViewSingleArticle }) {
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
-
-  const handleClick = () => {
-    setViewSingleArticle(false);
-  };
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
@@ -17,6 +14,7 @@ function SingleArticle({ id, setViewSingleArticle }) {
       setisLoading(false);
     });
   }, []);
+
   console.log(article);
   if (loading) {
     return <p>Loading your article</p>;
@@ -31,9 +29,9 @@ function SingleArticle({ id, setViewSingleArticle }) {
       </p>
       <p>{article[0].body}</p>
       <p>Votes {article[0].votes}</p>
-      <Button variant="contained" onClick={handleClick}>
-        back
-      </Button>
+      <Link to="/">
+        <Button variant="contained">back</Button>
+      </Link>
     </div>
   );
 }

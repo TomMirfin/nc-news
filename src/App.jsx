@@ -8,10 +8,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Articles />} />
-        <Route
-          path="./src/components/SingleArticle.jsx"
-          element={<SingleArticle />}
-        />
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
       </Routes>
     </>
   );
