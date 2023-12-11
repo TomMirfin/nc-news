@@ -1,11 +1,16 @@
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { GetSingleArticle } from "../apis/apis";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-function SingleArticle({ id }) {
+function SingleArticle({ setViewSingleArticle }) {
+  const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
+  console.log(id);
+  const handleClick = () => {
+    setViewSingleArticle(false);
+  };
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
@@ -14,24 +19,27 @@ function SingleArticle({ id }) {
       setisLoading(false);
     });
   }, []);
-
   console.log(article);
   if (loading) {
-    return <p>Loading your article</p>;
+    return <p className="single-article">Loading your article</p>;
   }
 
   return (
-    <div className="single-article">
-      <h1>{article[0].title}</h1>
-      <img src={article[0].article_img_url} alt="" />
-      <p>
-        {article[0].author} {article[0].topic}
-      </p>
-      <p>{article[0].body}</p>
-      <p>Votes {article[0].votes}</p>
-      <Link to="/">
-        <Button variant="contained">back</Button>
-      </Link>
+    <div className="single-article-container">
+      <div className="single-article">
+        <h1>{article[0].title}</h1>
+        <img src={article[0].article_img_url} alt="" />
+        <p>
+          {article[0].author} {article[0].topic}
+        </p>
+        <p>{article[0].body}</p>
+        <p>Votes {article[0].votes}</p>
+        <Link to="/">
+          <Button variant="contained" onClick={handleClick}>
+            back
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
