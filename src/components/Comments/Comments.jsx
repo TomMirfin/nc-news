@@ -6,18 +6,20 @@ import { Fade } from "react-awesome-reveal";
 function Comments() {
   const { id } = useParams();
   const [comments, setComments] = useState([]);
-  useState;
+  const [loadingComments, setLoadingComments] = useState(true);
+
   useEffect(() => {
     GetAllComments(id).then((res) => {
       console.log(res);
       setComments(res.data);
+      setLoadingComments(false);
     });
   }, []);
-  console.log(comments.comments);
+
   return (
     <Fade>
       <div>
-        {comments.comments.length > 0 ? (
+        {!loadingComments ? (
           comments.comments.map((comment) => {
             return <p className="single-comment">{comment.body}</p>;
           })

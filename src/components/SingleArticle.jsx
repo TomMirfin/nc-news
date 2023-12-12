@@ -4,14 +4,10 @@ import { GetSingleArticle } from "../apis/apis";
 import { useParams, Link } from "react-router-dom";
 import Comments from "./Comments/Comments";
 
-function SingleArticle({ setViewSingleArticle }) {
+function SingleArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
-
-  const handleClick = () => {
-    setViewSingleArticle(false);
-  };
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
@@ -37,9 +33,7 @@ function SingleArticle({ setViewSingleArticle }) {
         <h2 className="comments-title">Comments</h2>
         <Comments />
         <Link to="/">
-          <Button variant="contained" onClick={handleClick}>
-            back
-          </Button>
+          <Button variant="contained">back</Button>
         </Link>
       </div>
     </div>

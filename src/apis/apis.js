@@ -35,3 +35,14 @@ export function GetAllComments(id) {
       console.log(err);
     });
 }
+export function VoteOnComments(id, votesCounter) {
+  console.log(id);
+  return api
+    .patch(`/api/articles/${id}/`, votesCounter)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
