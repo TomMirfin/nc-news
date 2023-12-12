@@ -12,3 +12,35 @@ export function GetAllArticles() {
       console.log(err);
     });
 }
+
+export function GetSingleArticle(id) {
+  return api
+    .get(`/api/articles/${id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function getAllComments(id) {
+  return api
+    .get(`/api/articles/${id}/comments`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+export function VoteOnComments(id, votesCounter) {
+  return api
+    .patch(`/api/articles/${id}/`, votesCounter)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
