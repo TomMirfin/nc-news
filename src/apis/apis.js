@@ -36,7 +36,7 @@ export function getAllComments(id) {
 }
 export function voteOnArticles(id) {
   return api
-    .patch(`/api/articles/${id}`, { inc_votes: "1" })
+    .patch(`/api/articles/${id}`, { inc_votes: 1 })
     .then((res) => {
       console.log(res);
     })
