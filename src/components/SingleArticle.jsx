@@ -12,25 +12,36 @@ function SingleArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
+  const [prevCounts, setPrevCounts] = useState(0);
 
-  const [count, setCount] = useState(0);
+  const [newVote, setNewVote] = useState({ incVotes: 1 });
 
   const handleOnClick = () => {
-    setCount((count) => count + 1);
-  };
-  const handleDecrement = () => {
-    if (count > 0) setCount((count) => count - 1);
+    setNewVote({ incVotes: 1 });
+    voteOnArticles(id, newVote)
+      .then((res) => {
+        setPrevCounts(res + 1);
+      })
+      .catch((err) => {
+        console.log(err, "<-- err");
+      });
   };
 
-  useEffect(() => {
-    voteOnArticles(id).then((res) => {
-      console.log(res);
-    });
-  }, [count]);
+  const handleDecrement = () => {
+    setNewVote({ incVotes: -1 });
+    voteOnArticles(id, newVote)
+      .then((res) => {
+        setPrevCounts(res + -1);
+      })
+      .catch((err) => {
+        console.log(err, "<-- err");
+      });
+  };
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
       setArticle(res.data);
+      setPrevCounts(res.data[0].votes);
       setisLoading(false);
     });
   }, []);
@@ -48,7 +59,7 @@ function SingleArticle() {
           {article[0].author} {article[0].topic}
         </p>
         <p>{article[0].body}</p>
-        <p>Votes {count}</p>
+        <p>Votes {prevCounts}</p>
         <div>
           <ThumbUpIcon
             onClick={() => {
