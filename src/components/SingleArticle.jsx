@@ -4,10 +4,30 @@ import { GetSingleArticle } from "../apis/apis";
 import { useParams, Link } from "react-router-dom";
 import Comments from "./Comments/Comments";
 
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { VoteOnComments } from "../apis/apis";
+
 function SingleArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
+
+  const [count, setCount] = useState(0);
+
+  const handleOnClick = () => {
+    setCount((count) => count + 1);
+  };
+  const handleDecrement = () => {
+    if (count > 0) setCount((count) => count - 1);
+  };
+  const voteIncDec = { inc_votes: count };
+
+  useEffect(() => {
+    VoteOnComments(id).then((res) => {
+      console.log(res);
+    });
+  }, [count]);
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
@@ -15,7 +35,7 @@ function SingleArticle() {
       setisLoading(false);
     });
   }, []);
-  console.log(article);
+
   if (loading) {
     return <p className="loading">Loading your article</p>;
   }
@@ -30,6 +50,18 @@ function SingleArticle() {
         </p>
         <p>{article[0].body}</p>
         <p>Votes {article[0].votes}</p>
+        <div>
+          <ThumbUpIcon
+            onClick={() => {
+              handleOnClick();
+            }}
+          />
+          <ThumbDownIcon
+            onClick={() => {
+              handleDecrement();
+            }}
+          />
+        </div>
         <h2 className="comments-title">Comments</h2>
         <Comments />
         <Link to="/">

@@ -35,11 +35,11 @@ export function GetAllComments(id) {
       console.log(err);
     });
 }
-export function VoteOnComments(id, votesCounter) {
-  console.log(id);
+export function VoteOnComments(id) {
   return api
-    .patch(`/api/articles/${id}/`, votesCounter)
+    .patch(`/api/articles/${id}/`, { inc_votes: "1" })
     .then((response) => {
+      console.log(response);
       return response;
     })
     .catch((err) => {
