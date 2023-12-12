@@ -34,11 +34,11 @@ export function getAllComments(id) {
       console.log(err);
     });
 }
-export function VoteOnComments(id, votesCounter) {
+export function voteOnArticles(id) {
   return api
-    .patch(`/api/articles/${id}/`, votesCounter)
-    .then((response) => {
-      return response;
+    .patch(`/api/articles/${id}`, { inc_votes: 1 })
+    .then((res) => {
+      console.log(res);
     })
     .catch((err) => {
       console.log(err);
