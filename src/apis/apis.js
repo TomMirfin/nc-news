@@ -24,7 +24,7 @@ export function GetSingleArticle(id) {
     });
 }
 
-export function GetAllComments(id) {
+export function getAllComments(id) {
   return api
     .get(`/api/articles/${id}/comments`)
     .then((response) => {
@@ -34,13 +34,11 @@ export function GetAllComments(id) {
       console.log(err);
     });
 }
-export function VoteOnComments(id, voteIncDec) {
-  console.log(voteIncDec);
+export function voteOnArticles(id) {
   return api
-    .patch(`/api/articles/${id}`, voteIncDec)
-    .then((response) => {
-      console.log(response);
-      return response;
+    .patch(`/api/articles/${id}`, { inc_votes: "1" })
+    .then((res) => {
+      console.log(res);
     })
     .catch((err) => {
       console.log(err);

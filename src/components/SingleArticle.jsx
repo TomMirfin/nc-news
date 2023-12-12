@@ -6,7 +6,7 @@ import Comments from "./Comments/Comments";
 
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { VoteOnComments } from "../apis/apis";
+import { voteOnArticles } from "../apis/apis";
 
 function SingleArticle() {
   const { id } = useParams();
@@ -21,11 +21,9 @@ function SingleArticle() {
   const handleDecrement = () => {
     if (count > 0) setCount((count) => count - 1);
   };
-  const stringedCount = count.toString();
-  const voteIncDec = { inc_votes: stringedCount };
 
   useEffect(() => {
-    VoteOnComments(id, voteIncDec).then((res) => {
+    voteOnArticles(id).then((res) => {
       console.log(res);
     });
   }, [count]);

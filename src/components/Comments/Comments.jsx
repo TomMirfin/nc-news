@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAllComments } from "../../apis/apis";
+import { getAllComments } from "../../apis/apis";
 import { useParams } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 
@@ -9,7 +9,7 @@ function Comments() {
   const [loadingComments, setLoadingComments] = useState(true);
 
   useEffect(() => {
-    GetAllComments(id).then((res) => {
+    getAllComments(id).then((res) => {
       setComments(res.data);
       setLoadingComments(false);
     });
