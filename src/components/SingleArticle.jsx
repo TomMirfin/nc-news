@@ -6,7 +6,7 @@ import Comments from "./Comments/Comments";
 
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { voteOnArticles } from "../apis/apis";
+// import { voteOnArticles } from "../apis/apis";
 
 function SingleArticle() {
   const { id } = useParams();
@@ -22,9 +22,9 @@ function SingleArticle() {
     if (count > 0) setCount((count) => count - 1);
   };
 
-  useEffect(() => {
-    voteOnArticles(id).then((res) => {});
-  }, [count]);
+  // useEffect(() => {
+  //   voteOnArticles(id).then((res) => {});
+  // }, [count]);
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {

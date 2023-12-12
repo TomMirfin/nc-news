@@ -9,11 +9,12 @@ function Comments() {
   const { id } = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+  const [addNewCommentLoad, setAddNewCommentLoad] = useState(true);
 
   const addComment = (comment) => {
+    setAddNewCommentLoad(false);
     setComments((currItems) => {
-      console.log(currItems);
-      return [...currItems.comments, { ...comment }];
+      return [...currItems.comments, { ...comment, id: Date.now() }];
     });
   };
 
@@ -28,7 +29,7 @@ function Comments() {
     <Fade>
       <div>
         <CommentAdder addComment={addComment} />
-        {!loadingComments ? (
+        {!loadingComments && addNewCommentLoad ? (
           comments.comments.map((comment) => {
             return (
               <div className="single-comment">
@@ -42,7 +43,9 @@ function Comments() {
             Comments Are Loading <HourglassTopIcon />
           </p>
         )}
-        {!loadingComments && comments.comments.length > 0 ? (
+        {!loadingComments &&
+        addNewCommentLoad &&
+        comments.comments.length > 0 ? (
           comments.comments.map((comment) => {
             return <p className="single-comment">{comment.body}</p>;
           })

@@ -34,11 +34,22 @@ export function getAllComments(id) {
       console.log(err);
     });
 }
-export function voteOnArticles(id) {
+// export function voteOnArticles(id) {
+//   return api
+//     .patch(`/api/articles/${id}`, { inc_votes: 1 })
+//     .then((res) => {})
+//     .catch((err) => {});
+// }
+
+export function postOnArticle(id, addNewComment) {
+  console.log(addNewComment, "<-- add new comment in api");
   return api
-    .patch(`/api/articles/${id}`, { inc_votes: 1 })
+    .post(`/api/articles/${id}/comments`, addNewComment)
     .then((res) => {
       console.log(res);
+      return res;
     })
-    .catch((err) => {});
+    .catch((err) => {
+      console.log(err);
+    });
 }

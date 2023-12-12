@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-function CommentAdder({ addComment }) {
-  const [addNewComment, setAddNewComment] = useState({
-    userName: "",
-    comment: "",
-  });
+import { useParams } from "react-router-dom";
+import { postOnArticle } from "../../apis/apis";
 
+function CommentAdder({ addComment }) {
+  const { id } = useParams();
+
+  const [addNewComment, setAddNewComment] = useState({
+    username: "Hello",
+    body: "Test",
+  });
+  console.log(addNewComment);
   const handleChange = (event) => {
     setAddNewComment((curr) => {
       return {
@@ -17,8 +22,17 @@ function CommentAdder({ addComment }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addComment(addComment);
+    addComment(addNewComment);
+    setCommentToSend(addNewComment);
   };
+
+  useEffect(() => {
+    postOnArticle(id, addNewComment).then((res) => {
+      console.log(res.data, "<--- res data");
+      setComments(res.data);
+    });
+  }, []);
+
   return (
     <div>
       <form
@@ -27,13 +41,13 @@ function CommentAdder({ addComment }) {
         className="add-a-comment-form"
       >
         <label htmlFor="userName" className="username-label">
-          UserName
+          Username
           <input
             type="text"
             name="userName"
             className="comment-user-name-input"
             onChange={handleChange}
-            value={addNewComment.userName}
+            value={addNewComment.username}
             required
             id="userName"
           />
@@ -41,10 +55,10 @@ function CommentAdder({ addComment }) {
         <label htmlFor="comment">
           Comment
           <textarea
-            value={addNewComment.comment}
+            value={addNewComment.body}
             onChange={handleChange}
             className="add-comment-box"
-            name="comment"
+            name="body"
             id="comment"
             cols="80"
             rows="10"
