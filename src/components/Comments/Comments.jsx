@@ -3,11 +3,19 @@ import { getAllComments } from "../../apis/apis";
 import { useParams } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
+import CommentAdder from "./CommentAdder";
 
 function Comments() {
   const { id } = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+
+  const addComment = (comment) => {
+    setComments((currItems) => {
+      console.log(currItems);
+      return [...currItems.comments, { ...comment }];
+    });
+  };
 
   useEffect(() => {
     getAllComments(id).then((res) => {
@@ -19,9 +27,15 @@ function Comments() {
   return (
     <Fade>
       <div>
+        <CommentAdder addComment={addComment} />
         {!loadingComments ? (
           comments.comments.map((comment) => {
-            return <p className="single-comment">{comment.body}</p>;
+            return (
+              <div className="single-comment">
+                <h5>{comment.author} </h5>
+                <p>{comment.body}</p>
+              </div>
+            );
           })
         ) : (
           <p>

@@ -23,9 +23,7 @@ function SingleArticle() {
   };
 
   useEffect(() => {
-    voteOnArticles(id).then((res) => {
-      console.log(res);
-    });
+    voteOnArticles(id).then((res) => {});
   }, [count]);
 
   useEffect(() => {
