@@ -23,3 +23,15 @@ export function GetSingleArticle(id) {
       console.log(err);
     });
 }
+
+export function GetAllComments(id) {
+  console.log(id);
+  return api
+    .get(`/api/articles/${id}/comments`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

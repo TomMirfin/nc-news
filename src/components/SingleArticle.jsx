@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { GetSingleArticle } from "../apis/apis";
 import { useParams, Link } from "react-router-dom";
+import Comments from "./Comments/Comments";
 
 function SingleArticle({ setViewSingleArticle }) {
   const { id } = useParams();
@@ -14,7 +15,6 @@ function SingleArticle({ setViewSingleArticle }) {
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
-      console.log(res.data);
       setArticle(res.data);
       setisLoading(false);
     });
@@ -34,6 +34,8 @@ function SingleArticle({ setViewSingleArticle }) {
         </p>
         <p>{article[0].body}</p>
         <p>Votes {article[0].votes}</p>
+        <h2 className="comments-title">Comments</h2>
+        <Comments />
         <Link to="/">
           <Button variant="contained" onClick={handleClick}>
             back
