@@ -3,14 +3,18 @@ import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import { postOnArticle } from "../../apis/apis";
 
-function CommentAdder({ addComment }) {
+function CommentAdder({ addComment, setComments }) {
   const { id } = useParams();
 
   const [addNewComment, setAddNewComment] = useState({
-    username: "Hello",
+    username: "happyamy2016",
     body: "Test",
   });
-  console.log(addNewComment);
+
+  // const [receivedData, setReceivedData] = useState({
+  //   userName:
+  // })
+
   const handleChange = (event) => {
     setAddNewComment((curr) => {
       return {
@@ -23,13 +27,11 @@ function CommentAdder({ addComment }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     addComment(addNewComment);
-    setCommentToSend(addNewComment);
   };
 
   useEffect(() => {
     postOnArticle(id, addNewComment).then((res) => {
-      console.log(res.data, "<--- res data");
-      setComments(res.data);
+      setReceivedData(res.comments);
     });
   }, []);
 
@@ -41,13 +43,13 @@ function CommentAdder({ addComment }) {
         className="add-a-comment-form"
       >
         <label htmlFor="userName" className="username-label">
-          Username
+          UserName
           <input
             type="text"
             name="userName"
             className="comment-user-name-input"
             onChange={handleChange}
-            value={addNewComment.username}
+            value={addNewComment.userName}
             required
             id="userName"
           />
