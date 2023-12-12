@@ -18,7 +18,7 @@ function Articles() {
     <section className="article-grid">
       {viewSingleArticle ? (
         <div>
-          <SingleArticle id={id} setViewSingleArticle={setViewSingleArticle} />
+          <SingleArticle id={id} />
         </div>
       ) : (
         <div className="article-list">

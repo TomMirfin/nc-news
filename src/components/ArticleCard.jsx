@@ -3,7 +3,7 @@ import { GetSingleArticle } from "../apis/apis";
 import { useEffect, useState } from "react";
 import SingleArticle from "./SingleArticle";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+
 import { Fade } from "react-awesome-reveal";
 export default function ArticleCard({ article, setViewSingleArticle, setId }) {
   const handleClick = () => {
@@ -22,7 +22,7 @@ export default function ArticleCard({ article, setViewSingleArticle, setId }) {
           <p className="card-title">Author: </p>
           <p className="card-sub-title"> {article.author}</p>
         </div>
-        <img src={article.article_img_url} alt="" />
+        <img src={article.article_img_url} alt={article.title} />
         <div>
           <p className="card-title"> Topic</p>
           <p className="card-sub-title">{article.topic}</p>
