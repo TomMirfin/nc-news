@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { GetAllComments } from "../../apis/apis";
+import { getAllComments } from "../../apis/apis";
 import { useParams } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
+import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 
 function Comments() {
   const { id } = useParams();
@@ -9,8 +10,7 @@ function Comments() {
   const [loadingComments, setLoadingComments] = useState(true);
 
   useEffect(() => {
-    GetAllComments(id).then((res) => {
-      console.log(res);
+    getAllComments(id).then((res) => {
       setComments(res.data);
       setLoadingComments(false);
     });
@@ -24,7 +24,16 @@ function Comments() {
             return <p className="single-comment">{comment.body}</p>;
           })
         ) : (
-          <p>No comments to show </p>
+          <p>
+            Comments Are Loading <HourglassTopIcon />
+          </p>
+        )}
+        {!loadingComments && !comments ? (
+          comments.comments.map((comment) => {
+            return <p className="single-comment">{comment.body}</p>;
+          })
+        ) : (
+          <p>No Comments To Show</p>
         )}
       </div>
     </Fade>

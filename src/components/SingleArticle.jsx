@@ -15,7 +15,7 @@ function SingleArticle() {
       setisLoading(false);
     });
   }, []);
-  console.log(article);
+
   if (loading) {
     return <p className="loading">Loading your article</p>;
   }

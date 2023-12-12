@@ -24,8 +24,7 @@ export function GetSingleArticle(id) {
     });
 }
 
-export function GetAllComments(id) {
-  console.log(id);
+export function getAllComments(id) {
   return api
     .get(`/api/articles/${id}/comments`)
     .then((response) => {
@@ -36,7 +35,6 @@ export function GetAllComments(id) {
     });
 }
 export function VoteOnComments(id, votesCounter) {
-  console.log(id);
   return api
     .patch(`/api/articles/${id}/`, votesCounter)
     .then((response) => {
