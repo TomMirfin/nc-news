@@ -21,10 +21,11 @@ function SingleArticle() {
   const handleDecrement = () => {
     if (count > 0) setCount((count) => count - 1);
   };
-  const voteIncDec = { inc_votes: count };
+  const stringedCount = count.toString();
+  const voteIncDec = { inc_votes: stringedCount };
 
   useEffect(() => {
-    VoteOnComments(id).then((res) => {
+    VoteOnComments(id, voteIncDec).then((res) => {
       console.log(res);
     });
   }, [count]);
@@ -49,7 +50,7 @@ function SingleArticle() {
           {article[0].author} {article[0].topic}
         </p>
         <p>{article[0].body}</p>
-        <p>Votes {article[0].votes}</p>
+        <p>Votes {count}</p>
         <div>
           <ThumbUpIcon
             onClick={() => {

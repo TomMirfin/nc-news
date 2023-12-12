@@ -10,7 +10,6 @@ function Comments() {
 
   useEffect(() => {
     GetAllComments(id).then((res) => {
-      console.log(res);
       setComments(res.data);
       setLoadingComments(false);
     });
@@ -24,7 +23,7 @@ function Comments() {
             return <p className="single-comment">{comment.body}</p>;
           })
         ) : (
-          <p>No comments to show </p>
+          <p>Comments are Loading</p>
         )}
       </div>
     </Fade>

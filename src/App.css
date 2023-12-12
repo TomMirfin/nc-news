@@ -135,7 +135,7 @@ h1 {
   color: white;
   text-decoration: underline rgb(25, 118, 210) 6px;
   text-underline-offset: 2px;
-  text-shadow: 10px, 10px, 10px, 10px black;
+
   cursor: pointer;
   font-size: xx-large;
 }

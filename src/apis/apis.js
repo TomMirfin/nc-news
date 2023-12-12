@@ -25,7 +25,6 @@ export function GetSingleArticle(id) {
 }
 
 export function GetAllComments(id) {
-  console.log(id);
   return api
     .get(`/api/articles/${id}/comments`)
     .then((response) => {
@@ -35,9 +34,10 @@ export function GetAllComments(id) {
       console.log(err);
     });
 }
-export function VoteOnComments(id) {
+export function VoteOnComments(id, voteIncDec) {
+  console.log(voteIncDec);
   return api
-    .patch(`/api/articles/${id}/`, { inc_votes: "1" })
+    .patch(`/api/articles/${id}`, voteIncDec)
     .then((response) => {
       console.log(response);
       return response;
