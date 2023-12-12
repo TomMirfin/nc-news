@@ -28,7 +28,7 @@ function Comments() {
             Comments Are Loading <HourglassTopIcon />
           </p>
         )}
-        {!loadingComments && !comments ? (
+        {!loadingComments && comments.comments.length > 0 ? (
           comments.comments.map((comment) => {
             return <p className="single-comment">{comment.body}</p>;
           })
