@@ -68,3 +68,14 @@ export function deleteAComment(id) {
       console.log(err);
     });
 }
+
+export function getAllTopics() {
+  return api
+    .get(`/api/topics`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

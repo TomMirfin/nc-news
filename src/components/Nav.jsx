@@ -1,4 +1,5 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import CategoryIcon from "@mui/icons-material/Category";
+import ArticleIcon from "@mui/icons-material/Article";
 import { Link } from "react-router-dom";
 function Nav() {
   return (
@@ -8,10 +9,16 @@ function Nav() {
       </Link>
       <h4>Welcome </h4>
       <ul className="nav-icons">
-        <li>
-          <AccountCircleIcon />
-        </li>
-        <li>Users</li>
+        <Link to="/">
+          <li>
+            Articles <ArticleIcon />
+          </li>
+        </Link>
+        <Link to="/topics">
+          <li>
+            Topics <CategoryIcon />
+          </li>
+        </Link>
       </ul>
     </nav>
   );
