@@ -41,7 +41,7 @@ function SingleArticle() {
         </p>
         <p>{article[0].body}</p>
         <p>Votes {count}</p>
-        <div>
+        <div className="vote-buttons">
           <ThumbUpIcon
             onClick={() => {
               handleOnClick();
@@ -53,11 +53,11 @@ function SingleArticle() {
             }}
           />
         </div>
+        <Link to="/">
+          <Button variant="contained">back to all articles</Button>
+        </Link>
         <h2 className="comments-title">Comments</h2>
         <Comments />
-        <Link to="/">
-          <Button variant="contained">back</Button>
-        </Link>
       </div>
     </div>
   );
