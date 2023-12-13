@@ -40,6 +40,35 @@ export function voteOnArticles(id, newVote) {
     .patch(`/api/articles/${id}`, newVote)
     .then((res) => {
       return res.data.votes;
+
+export function postOnArticle(id, addNewComment) {
+  return api
+    .post(`/api/articles/${id}/comments`, addNewComment)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function getAllUsers() {
+  return api
+    .get(`/api/users`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function deleteAComment(id) {
+  return api
+    .delete(`/api/comments/${id}`)
+    .then((response) => {
+      return response;
+
     })
     .catch((err) => {
       console.log(err);
