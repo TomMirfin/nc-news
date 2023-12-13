@@ -45,7 +45,9 @@ function Comments() {
           comments.map((comment) => {
             return (
               <div className="single-comment">
-                {new Date(comment.created_at).toLocaleDateString("en-gb")}
+                <div>
+                  {new Date(comment.created_at).toLocaleDateString("en-gb")}
+                </div>
                 {new Date(comment.created_at).toLocaleTimeString("en-gb")}
                 {comment.author === user ? (
                   <div>
