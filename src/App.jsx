@@ -7,24 +7,28 @@ import Comments from "./components/Comments/Comments";
 import { UserProvider } from "./components/Context/usersContext";
 import { useState } from "react";
 import Login from "./components/Login/Login";
-useState;
+import Topics from "./components/Topics/Topics";
 
 function App() {
   const [login, setLogin] = useState(false);
   return (
     <>
-      <Nav />
       {!login ? (
         <UserProvider>
           <Login setLogin={setLogin} />
         </UserProvider>
       ) : (
         <UserProvider>
-          <Routes>
-            <Route path="/" element={<Articles />} />
-            <Route path="/articles/:id" element={<SingleArticle />} />
-            <Route path="/articles/:id/comments" element={<Comments />} />
-          </Routes>
+          <div>
+            <Nav />
+
+            <Routes>
+              <Route path="/" element={<Articles />} />
+              <Route path="/articles/:id" element={<SingleArticle />} />
+              <Route path="/articles/:id/comments" element={<Comments />} />
+              <Route path="/api/:topic" element={<Topics />} />
+            </Routes>
+          </div>
         </UserProvider>
       )}
     </>
