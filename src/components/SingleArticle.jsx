@@ -14,32 +14,20 @@ function SingleArticle() {
   const [loading, setisLoading] = useState(true);
   const [prevCounts, setPrevCounts] = useState(0);
 
-  const [newVote, setNewVote] = useState({ incVotes: 1 });
-  const [newDecVote, setNewDecVote] = useState({ incVotes: -1 });
-  // take state out and pass hardcoded object
   const handleOnClick = () => {
-    //optimistically increase prev counts
-    setNewVote({ incVotes: 1 });
-    voteOnArticles(id, newVote)
-      .then((res) => {
-        //then block to come out
-        setPrevCounts(res);
-      })
-      .catch((err) => {
-        //set state to be -1 or +1 depeding on which function
-        console.log(err, "<-- err");
-      });
+    setPrevCounts((prevnum) => prevnum + 1);
+    voteOnArticles(id, { incVotes: 1 }).catch((err) => {
+      setPrevCounts((prevnum) => prevnum - 1);
+      console.log(err, "<-- err");
+    });
   };
 
   const handleDecrement = () => {
-    setNewDecVote({ incVotes: -1 });
-    voteOnArticles(id, newDecVote)
-      .then((res) => {
-        setPrevCounts(res);
-      })
-      .catch((err) => {
-        console.log(err, "<-- err");
-      });
+    setPrevCounts((prevnum) => prevnum + -1);
+    voteOnArticles(id, { incVotes: -1 }).catch((err) => {
+      setPrevCounts((prevnum) => prevnum + 1);
+      console.log(err, "<--err");
+    });
   };
 
   useEffect(() => {
