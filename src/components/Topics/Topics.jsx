@@ -8,6 +8,7 @@ function Topics() {
   const [articles, setArticles] = useState([]);
   const [loading, setIsLoading] = useState(true);
   const [topicLoad, setTopicLoad] = useState(true);
+  const [selectTopic, setSelectTopic] = useState("");
 
   useEffect(() => {
     getAllTopics().then((topics) => {
@@ -22,35 +23,42 @@ function Topics() {
       setIsLoading(false);
     });
   }, []);
-  const handleButtonClick = () => {};
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  console.log(topics);
+    const filterArticles = articles.filter(
+      (article) => article.topic === selectTopic
+    );
+    console.log(filterArticles);
+    setArticles(filterArticles);
+  };
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSelectTopic(event.target.value);
+  };
+
   return (
     <div>
       <form className="search-form" onSubmit={handleSubmit}>
         <label htmlFor="topics">
-          <select name="topics" id="">
-            <label htmlFor=""></label>
+          <select name="topics" id="" onChange={handleChange}>
             {!topicLoad &&
               topics.map((topic) => {
-                return <option value="">{topic.slug}</option>;
+                return <option value={topic.slug}>{topic.slug}</option>;
               })}
           </select>
         </label>
+
+        <Button variant="contained" type="submit">
+          Go To articles
+        </Button>
       </form>
       <div className="article-list">
-        {!loading &&
-          articles.map((article) => {
-            return <ArticleCard article={article} key={article.id} />;
-          })}
+        {articles.map((article) => {
+          return <ArticleCard article={article} key={article.id} />;
+        })}
       </div>
-      <Link to={`/search/${topics}`}>
-        <Button variant="contained" onClick={handleButtonClick}>
-          Post A Comment
-        </Button>
-      </Link>
     </div>
   );
 }

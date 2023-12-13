@@ -14,7 +14,7 @@ function Nav() {
             Articles <ArticleIcon />
           </li>
         </Link>
-        <Link to="/search/:topic">
+        <Link to="/api/topics">
           <li className="nav-links">
             Search <SearchIcon />
           </li>

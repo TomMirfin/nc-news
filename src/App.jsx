@@ -8,6 +8,7 @@ import { UserProvider } from "./components/Context/usersContext";
 import { useState } from "react";
 import Login from "./components/Login/Login";
 import Topics from "./components/Topics/Topics";
+import CodingTopic from "./components/Topics/CodingTopic";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -26,7 +27,7 @@ function App() {
               <Route path="/" element={<Articles />} />
               <Route path="/articles/:id" element={<SingleArticle />} />
               <Route path="/articles/:id/comments" element={<Comments />} />
-              <Route path="/search/:topic" element={<Topics />} />
+              <Route path="/api/:topic" element={<Topics />} />
             </Routes>
           </div>
         </UserProvider>
