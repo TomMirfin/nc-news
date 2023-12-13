@@ -39,6 +39,7 @@ function Comments() {
     <Fade>
       <div>
         <CommentAdder setComments={setComments} />
+
         {!loadingComments ? (
           comments.map((comment) => {
             return (

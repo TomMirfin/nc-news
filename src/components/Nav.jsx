@@ -1,17 +1,29 @@
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ArticleIcon from "@mui/icons-material/Article";
+import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+
+import { useContext } from "react";
+import { UserContext } from "./Context/usersContext";
+
 function Nav() {
+  const { user } = useContext(UserContext);
   return (
     <nav className="nav">
       <Link to="/">
         <h1>NC NEWS</h1>
       </Link>
-      <h4>Welcome </h4>
+      <h4>Welcome {user} </h4>
       <ul className="nav-icons">
-        <li>
-          <AccountCircleIcon />
-        </li>
-        <li>Users</li>
+        <Link to="/">
+          <li className="nav-links">
+            Articles <ArticleIcon />
+          </li>
+        </Link>
+        <Link to="/api/topics">
+          <li className="nav-links">
+            Search <SearchIcon />
+          </li>
+        </Link>
       </ul>
     </nav>
   );
