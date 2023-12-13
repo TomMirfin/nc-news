@@ -35,11 +35,10 @@ function Articles() {
             name="select"
             id=""
             onChange={handleChange}
-            className="select-sort_by"
+            className="topic-input"
           >
-            <option value="">Choose Below</option>
-            <option value="ASC">Ascending</option>
             <option value="DESC">Descending</option>
+            <option value="ASC">Ascending</option>
           </select>
 
           <Button
@@ -47,7 +46,7 @@ function Articles() {
             type="submit"
             style={{ alignContent: "center", marginLeft: "20px" }}
           >
-            Go To articles
+            Sort Articles
           </Button>
         </form>
       </div>

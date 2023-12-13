@@ -32,7 +32,7 @@ function Topics() {
     const filterArticles = articles.filter(
       (article) => article.topic === selectTopic
     );
-    console.log(filterArticles);
+
     setFilteredArticles(filterArticles);
     setSelectTopic("");
   };
