@@ -2,9 +2,10 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "https://news-server-qoyx.onrender.com",
 });
-export function GetAllArticles() {
+export function GetAllArticles(query) {
+  console.log(query);
   return api
-    .get(`api/articles`)
+    .get(`api/articles?sort_by=${query}`)
     .then((response) => {
       return response;
     })
