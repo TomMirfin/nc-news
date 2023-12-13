@@ -55,7 +55,7 @@ function SingleArticle() {
         <p>Votes {prevCounts}</p>
         <div>
           <ThumbUpIcon
-            style={{ fontSize: "xx-large" }}
+            style={{ fontSize: "xx-large", marginRight: "10px" }}
             onClick={() => {
               handleOnClick();
             }}
