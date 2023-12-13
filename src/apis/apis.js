@@ -1,7 +1,9 @@
 import axios from "axios";
+
 const api = axios.create({
   baseURL: "https://news-server-qoyx.onrender.com",
 });
+
 export function GetAllArticles() {
   return api
     .get(`api/articles`)
@@ -33,6 +35,12 @@ export function getAllComments(id) {
     .catch((err) => {
       console.log(err);
     });
+}
+
+export function voteOnArticles(id, newVote) {
+  return api.patch(`/api/articles/${id}`, newVote).then((res) => {
+    return res.data.votes;
+  });
 }
 
 export function postOnArticle(id, addNewComment) {
