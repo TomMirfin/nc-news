@@ -19,7 +19,7 @@ function Topics() {
   }, []);
 
   useEffect(() => {
-    GetAllArticles().then((articles) => {
+    GetAllArticles("DESC").then((articles) => {
       setArticles(articles.data);
       setIsLoading(false);
       setFilteredArticles(articles.data);
