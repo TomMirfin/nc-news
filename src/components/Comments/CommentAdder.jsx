@@ -25,6 +25,7 @@ function CommentAdder({ setComments }) {
   };
 
   const handleSubmit = (event) => {
+
     if (makeAComment.length > 5) {
       event.preventDefault();
       setMakeAComment("");

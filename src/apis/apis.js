@@ -56,3 +56,14 @@ export function getAllUsers() {
       console.log(err);
     });
 }
+
+export function deleteAComment(id) {
+  return api
+    .delete(`/api/comments/${id}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

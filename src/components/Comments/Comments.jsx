@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
-import { getAllComments } from "../../apis/apis";
+import { useEffect, useState, useContext } from "react";
+import { deleteAComment, getAllComments } from "../../apis/apis";
 import { useParams } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import CommentAdder from "./CommentAdder";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { UserContext } from "../Context/usersContext";
 
 function Comments() {
   const { id } = useParams();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     getAllComments(id).then((res) => {
@@ -25,7 +28,23 @@ function Comments() {
           comments.map((comment) => {
             return (
               <div className="single-comment">
-                <h5>{comment.author} </h5>
+                {new Date(comment.created_at).toLocaleDateString("en-gb")}
+                {new Date(comment.created_at).toLocaleTimeString("en-gb")}
+                {comment.author === user ? (
+                  <div>
+                    <h5 className="single-comment">{comment.author} </h5>
+                    <p
+                      className="delete-comment"
+                      onClick={() => {
+                        handleDelete(comment.comment_id);
+                      }}
+                    >
+                      delete comment <DeleteIcon />
+                    </p>
+                  </div>
+                ) : (
+                  <h5>{comment.author} </h5>
+                )}
                 <p>{comment.body}</p>
               </div>
             );
