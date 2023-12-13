@@ -26,7 +26,7 @@ function App() {
               <Route path="/" element={<Articles />} />
               <Route path="/articles/:id" element={<SingleArticle />} />
               <Route path="/articles/:id/comments" element={<Comments />} />
-              <Route path="/topics" element={<Topics />} />
+              <Route path="/search/:topic" element={<Topics />} />
             </Routes>
           </div>
         </UserProvider>

@@ -1,5 +1,5 @@
-import CategoryIcon from "@mui/icons-material/Category";
 import ArticleIcon from "@mui/icons-material/Article";
+import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 function Nav() {
   return (
@@ -10,13 +10,13 @@ function Nav() {
       <h4>Welcome </h4>
       <ul className="nav-icons">
         <Link to="/">
-          <li>
+          <li className="nav-links">
             Articles <ArticleIcon />
           </li>
         </Link>
-        <Link to="/topics">
-          <li>
-            Topics <CategoryIcon />
+        <Link to="/search/:topic">
+          <li className="nav-links">
+            Search <SearchIcon />
           </li>
         </Link>
       </ul>
