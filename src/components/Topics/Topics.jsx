@@ -8,7 +8,8 @@ function Topics() {
   const [articles, setArticles] = useState([]);
   const [loading, setIsLoading] = useState(true);
   const [topicLoad, setTopicLoad] = useState(true);
-  const [selectTopic, setSelectTopic] = useState("");
+  const [selectTopic, setSelectTopic] = useState("coding");
+  const [filteredArticles, setFilteredArticles] = useState([]);
 
   useEffect(() => {
     getAllTopics().then((topics) => {
@@ -21,6 +22,7 @@ function Topics() {
     GetAllArticles().then((articles) => {
       setArticles(articles.data);
       setIsLoading(false);
+      setFilteredArticles(articles.data);
     });
   }, []);
 
@@ -31,7 +33,8 @@ function Topics() {
       (article) => article.topic === selectTopic
     );
     console.log(filterArticles);
-    setArticles(filterArticles);
+    setFilteredArticles(filterArticles);
+    setSelectTopic("");
   };
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -42,10 +45,15 @@ function Topics() {
     <div>
       <form className="search-form" onSubmit={handleSubmit}>
         <label htmlFor="topics">
-          <select name="topics" id="" onChange={handleChange}>
+          <h4>Select Your Topic</h4>
+          <select name="topics" className="topic-input" onChange={handleChange}>
             {!topicLoad &&
               topics.map((topic) => {
-                return <option value={topic.slug}>{topic.slug}</option>;
+                return (
+                  <option value={topic.slug}>
+                    <p>{topic.slug} </p>
+                  </option>
+                );
               })}
           </select>
         </label>
@@ -55,9 +63,13 @@ function Topics() {
         </Button>
       </form>
       <div className="article-list">
-        {articles.map((article) => {
-          return <ArticleCard article={article} key={article.id} />;
-        })}
+        {filteredArticles.length > 0 ? (
+          filteredArticles.map((article) => {
+            return <ArticleCard article={article} key={article.id} />;
+          })
+        ) : (
+          <p>Select a different article</p>
+        )}
       </div>
     </div>
   );

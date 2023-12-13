@@ -8,7 +8,6 @@ import { UserProvider } from "./components/Context/usersContext";
 import { useState } from "react";
 import Login from "./components/Login/Login";
 import Topics from "./components/Topics/Topics";
-import CodingTopic from "./components/Topics/CodingTopic";
 
 function App() {
   const [login, setLogin] = useState(false);
