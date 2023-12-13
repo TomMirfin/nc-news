@@ -15,12 +15,13 @@ function SingleArticle() {
   const [prevCounts, setPrevCounts] = useState(0);
 
   const [newVote, setNewVote] = useState({ incVotes: 1 });
+  const [newDecVote, setNewDecVote] = useState({ incVotes: -1 });
 
   const handleOnClick = () => {
     setNewVote({ incVotes: 1 });
     voteOnArticles(id, newVote)
       .then((res) => {
-        setPrevCounts(res + 1);
+        setPrevCounts(res);
       })
       .catch((err) => {
         console.log(err, "<-- err");
@@ -28,10 +29,10 @@ function SingleArticle() {
   };
 
   const handleDecrement = () => {
-    setNewVote({ incVotes: -1 });
-    voteOnArticles(id, newVote)
+    setNewDecVote({ incVotes: -1 });
+    voteOnArticles(id, newDecVote)
       .then((res) => {
-        setPrevCounts(res + -1);
+        setPrevCounts(res);
       })
       .catch((err) => {
         console.log(err, "<-- err");
