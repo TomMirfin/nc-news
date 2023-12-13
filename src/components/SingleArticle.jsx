@@ -3,11 +3,22 @@ import { useEffect, useState } from "react";
 import { GetSingleArticle } from "../apis/apis";
 import { useParams, Link } from "react-router-dom";
 import Comments from "./Comments/Comments";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
 function SingleArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
+
+  const [count, setCount] = useState(0);
+
+  const handleOnClick = () => {
+    setCount((count) => count + 1);
+  };
+  const handleDecrement = () => {
+    if (count > 0) setCount((count) => count - 1);
+  };
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
@@ -29,12 +40,24 @@ function SingleArticle() {
           {article[0].author} {article[0].topic}
         </p>
         <p>{article[0].body}</p>
-        <p>Votes {article[0].votes}</p>
+        <p>Votes {count}</p>
+        <div className="vote-buttons">
+          <ThumbUpIcon
+            onClick={() => {
+              handleOnClick();
+            }}
+          />
+          <ThumbDownIcon
+            onClick={() => {
+              handleDecrement();
+            }}
+          />
+        </div>
+        <Link to="/">
+          <Button variant="contained">back to all articles</Button>
+        </Link>
         <h2 className="comments-title">Comments</h2>
         <Comments />
-        <Link to="/">
-          <Button variant="contained">back</Button>
-        </Link>
       </div>
     </div>
   );

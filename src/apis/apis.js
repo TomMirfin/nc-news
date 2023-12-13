@@ -34,9 +34,33 @@ export function getAllComments(id) {
       console.log(err);
     });
 }
-export function VoteOnComments(id, votesCounter) {
+
+export function postOnArticle(id, addNewComment) {
   return api
-    .patch(`/api/articles/${id}/`, votesCounter)
+    .post(`/api/articles/${id}/comments`, addNewComment)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function getAllUsers() {
+  return api
+    .get(`/api/users`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function deleteAComment(id) {
+  return api
+    .delete(`/api/comments/${id}`)
     .then((response) => {
       return response;
     })
