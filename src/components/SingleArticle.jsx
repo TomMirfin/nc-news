@@ -68,11 +68,10 @@ function SingleArticle() {
           />
         </div>
 
-        <h2 className="comments-title">Comments</h2>
-        <Comments />
-
         <Link to="/">
-          <Button variant="contained">back to all articles</Button>
+          <Button variant="contained" style={{ marginTop: "50px" }}>
+            back to all articles
+          </Button>
         </Link>
         <h2 className="comments-title">Comments</h2>
         <Comments />
