@@ -36,8 +36,6 @@ export function getAllComments(id) {
 }
 
 export function voteOnArticles(id, newVote) {
-  console.log(newVote);
-
   return api
     .patch(`/api/articles/${id}`, newVote)
     .then((res) => {
