@@ -174,3 +174,57 @@ h1 {
   flex-direction: column;
   margin: auto;
 }
+.login-form {
+  background-color: rgba(58, 51, 51, 0.61);
+  margin-left: 30%;
+  margin-right: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  margin-top: 20px;
+  height: 300px;
+}
+
+.login-form > label {
+  text-align: center;
+}
+
+.login-form > button {
+  width: auto;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  background-color: rgb(25, 118, 210);
+  color: white;
+  padding: 20px;
+}
+.login-form > select {
+  margin-top: 20px;
+
+  text-align: center;
+  padding: 10px;
+}
+.x {
+  margin-left: 90%;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.item-card > img {
+  width: 150px;
+}
+
+.select-container {
+  width: 200px;
+  height: 100px;
+}
+
+.select-container > option {
+  text-align: center;
+  font-size: x-large;
+}
+
+.login-form > label {
+  font-size: large;
+}

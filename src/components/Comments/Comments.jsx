@@ -10,27 +10,19 @@ function Comments() {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
 
-  //   const addComment = (comment) => {
-  //     setComments((currItems) => {
-  //       return [...currItems.comments, { ...comment, id: Date.now() }];
-  //     });
-  //   };
-
   useEffect(() => {
     getAllComments(id).then((res) => {
-      setComments(res.data);
+      setLoadingComments(false);
+      setComments(res.data.comments);
     });
   }, []);
-
+  console.log(comments);
   return (
     <Fade>
       <div>
-        <CommentAdder
-          setComments={setComments}
-          setLoadingComments={setLoadingComments}
-        />
+        <CommentAdder setComments={setComments} />
         {!loadingComments ? (
-          comments.comments.map((comment) => {
+          comments.map((comment) => {
             return (
               <div className="single-comment">
                 <h5>{comment.author} </h5>
@@ -43,8 +35,8 @@ function Comments() {
             Comments Are Loading <HourglassTopIcon />
           </p>
         )}
-        {!loadingComments && comments.comments.length > 0 ? (
-          comments.comments.map((comment) => {
+        {loadingComments && comments.length > 0 ? (
+          comments.map((comment) => {
             return <p className="single-comment">{comment.body}</p>;
           })
         ) : (

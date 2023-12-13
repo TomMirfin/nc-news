@@ -1,21 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import { postOnArticle } from "../../apis/apis";
+import { UserContext } from "../Context/usersContext";
 
-function CommentAdder({ addComment, setComments }) {
+function CommentAdder({ setComments }) {
   const { id } = useParams();
-
+  const { user } = useContext(UserContext);
+  const [makeAComment, setMakeAComment] = useState("");
   const [addNewComment, setAddNewComment] = useState({
-    username: "happyamy2016",
-    body: "Test",
+    username: user,
+    body: makeAComment,
   });
 
-  // const [receivedData, setReceivedData] = useState({
-  //   userName:
-  // })
-
   const handleChange = (event) => {
+    setMakeAComment(event.target.value);
     setAddNewComment((curr) => {
       return {
         ...curr,
@@ -26,14 +25,25 @@ function CommentAdder({ addComment, setComments }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addComment(addNewComment);
-  };
-
-  useEffect(() => {
     postOnArticle(id, addNewComment).then((res) => {
-      setReceivedData(res.comments);
+      if (res) {
+        console.log(res);
+        setComments((currItems) => [
+          {
+            article_id: res.data.article_id,
+            author: res.data.author,
+            body: res.data.body,
+            comment_id: res.data.comment_id,
+            created_at: res.data.created_at,
+            votes: res.data.votes,
+          },
+          ...currItems,
+        ]);
+      } else {
+        console.log("No data");
+      }
     });
-  }, []);
+  };
 
   return (
     <div>
@@ -42,18 +52,7 @@ function CommentAdder({ addComment, setComments }) {
         onSubmit={handleSubmit}
         className="add-a-comment-form"
       >
-        <label htmlFor="userName" className="username-label">
-          UserName
-          <input
-            type="text"
-            name="userName"
-            className="comment-user-name-input"
-            onChange={handleChange}
-            value={addNewComment.userName}
-            required
-            id="userName"
-          />
-        </label>
+        <p>Post a comment as {user}</p>
         <label htmlFor="comment">
           Comment
           <textarea
