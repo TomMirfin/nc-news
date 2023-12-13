@@ -16,6 +16,7 @@ function CommentAdder({ setComments }) {
 
   const handleChange = (event) => {
     setMakeAComment(event.target.value);
+
     setAddNewComment((curr) => {
       return {
         ...curr,
@@ -25,7 +26,6 @@ function CommentAdder({ setComments }) {
   };
 
   const handleSubmit = (event) => {
-
     if (makeAComment.length > 5) {
       event.preventDefault();
       setMakeAComment("");
@@ -75,8 +75,6 @@ function CommentAdder({ setComments }) {
             id="comment"
             cols="80"
             rows="10"
-            maxlength="1000"
-            minLength="5"
           ></textarea>
           {!submitted && (
             <Button variant="contained" onClick={handleSubmit}>

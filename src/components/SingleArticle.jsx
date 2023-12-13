@@ -6,23 +6,34 @@ import Comments from "./Comments/Comments";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
+import { voteOnArticles } from "../apis/apis";
+
 function SingleArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
-
-  const [count, setCount] = useState(0);
+  const [prevCounts, setPrevCounts] = useState(0);
 
   const handleOnClick = () => {
-    setCount((count) => count + 1);
+    setPrevCounts((prevnum) => prevnum + 1);
+    voteOnArticles(id, { incVotes: 1 }).catch((err) => {
+      setPrevCounts((prevnum) => prevnum - 1);
+      console.log(err, "<-- err");
+    });
   };
+
   const handleDecrement = () => {
-    if (count > 0) setCount((count) => count - 1);
+    setPrevCounts((prevnum) => prevnum + -1);
+    voteOnArticles(id, { incVotes: -1 }).catch((err) => {
+      setPrevCounts((prevnum) => prevnum + 1);
+      console.log(err, "<--err");
+    });
   };
 
   useEffect(() => {
     GetSingleArticle(id).then((res) => {
       setArticle(res.data);
+      setPrevCounts(res.data[0].votes);
       setisLoading(false);
     });
   }, []);
@@ -40,10 +51,11 @@ function SingleArticle() {
           {article[0].author} {article[0].topic}
         </p>
         <p>{article[0].body}</p>
-        <p>Votes {count}</p>
-        <div className="vote-buttons">
+
+        <p>Votes {prevCounts}</p>
+        <div>
           <ThumbUpIcon
-            style={{ fontSize: "xx-large", marginRight: "20px" }}
+            style={{ fontSize: "xx-large" }}
             onClick={() => {
               handleOnClick();
             }}
@@ -55,6 +67,10 @@ function SingleArticle() {
             }}
           />
         </div>
+
+        <h2 className="comments-title">Comments</h2>
+        <Comments />
+
         <Link to="/">
           <Button variant="contained">back to all articles</Button>
         </Link>
