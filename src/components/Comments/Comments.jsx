@@ -20,6 +20,21 @@ function Comments() {
     });
   }, []);
 
+  const handleDelete = (comment_id) => {
+    deleteAComment(comment_id).then((res) => {
+      const newComments = comments.filter(
+        (com) => com.comment_id !== comment_id
+      );
+      setComments(newComments);
+
+      if (res.status === 204) {
+        alert("Comment Deleted");
+      } else {
+        alert("Comment failed to delete");
+      }
+    });
+  };
+
   return (
     <Fade>
       <div>
