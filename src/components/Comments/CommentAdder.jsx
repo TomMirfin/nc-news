@@ -12,6 +12,7 @@ function CommentAdder({ setComments }) {
     username: user,
     body: makeAComment,
   });
+  const [submitted, setsubmitted] = useState(false);
 
   const handleChange = (event) => {
     setMakeAComment(event.target.value);
@@ -24,27 +25,34 @@ function CommentAdder({ setComments }) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    postOnArticle(id, addNewComment)
-      .then((res) => {
-        alert("Comment Added");
-        if (res) {
-          setComments((currItems) => [
-            {
-              article_id: res.data.article_id,
-              author: res.data.author,
-              body: res.data.body,
-              comment_id: res.data.comment_id,
-              created_at: res.data.created_at,
-              votes: res.data.votes,
-            },
-            ...currItems,
-          ]);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (makeAComment.length > 5) {
+      event.preventDefault();
+      setMakeAComment("");
+      setsubmitted(true);
+      postOnArticle(id, addNewComment)
+        .then((res) => {
+          alert("Comment Added");
+          setsubmitted(false);
+          if (res) {
+            setComments((currItems) => [
+              {
+                article_id: res.data.article_id,
+                author: res.data.author,
+                body: res.data.body,
+                comment_id: res.data.comment_id,
+                created_at: res.data.created_at,
+                votes: res.data.votes,
+              },
+              ...currItems,
+            ]);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Your Comment must be more than 5 characters");
+    }
   };
 
   return (
@@ -59,7 +67,7 @@ function CommentAdder({ setComments }) {
           Comment
           <textarea
             required
-            value={addNewComment.body}
+            value={makeAComment}
             onChange={handleChange}
             className="add-comment-box"
             name="body"
@@ -69,9 +77,11 @@ function CommentAdder({ setComments }) {
             maxlength="1000"
             minLength="5"
           ></textarea>
-          <Button variant="contained" onClick={handleSubmit}>
-            Post A Comment
-          </Button>
+          {!submitted && (
+            <Button variant="contained" onClick={handleSubmit}>
+              Post A Comment
+            </Button>
+          )}
         </label>
       </form>
     </div>
