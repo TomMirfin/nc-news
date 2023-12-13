@@ -43,11 +43,13 @@ function SingleArticle() {
         <p>Votes {count}</p>
         <div>
           <ThumbUpIcon
+            style={{ fontSize: "xx-large", marginRight: "20px" }}
             onClick={() => {
               handleOnClick();
             }}
           />
           <ThumbDownIcon
+            style={{ fontSize: "xx-large" }}
             onClick={() => {
               handleDecrement();
             }}

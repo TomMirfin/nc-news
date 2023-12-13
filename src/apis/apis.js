@@ -36,11 +36,9 @@ export function getAllComments(id) {
 }
 
 export function postOnArticle(id, addNewComment) {
-  console.log(addNewComment);
   return api
     .post(`/api/articles/${id}/comments`, addNewComment)
     .then((res) => {
-      console.log(res);
       return res;
     })
     .catch((err) => {

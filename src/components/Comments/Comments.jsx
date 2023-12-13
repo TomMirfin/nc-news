@@ -16,7 +16,7 @@ function Comments() {
       setComments(res.data.comments);
     });
   }, []);
-  console.log(comments);
+
   return (
     <Fade>
       <div>

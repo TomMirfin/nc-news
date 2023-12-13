@@ -25,24 +25,26 @@ function CommentAdder({ setComments }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postOnArticle(id, addNewComment).then((res) => {
-      if (res) {
-        console.log(res);
-        setComments((currItems) => [
-          {
-            article_id: res.data.article_id,
-            author: res.data.author,
-            body: res.data.body,
-            comment_id: res.data.comment_id,
-            created_at: res.data.created_at,
-            votes: res.data.votes,
-          },
-          ...currItems,
-        ]);
-      } else {
-        console.log("No data");
-      }
-    });
+    postOnArticle(id, addNewComment)
+      .then((res) => {
+        alert("Comment Added");
+        if (res) {
+          setComments((currItems) => [
+            {
+              article_id: res.data.article_id,
+              author: res.data.author,
+              body: res.data.body,
+              comment_id: res.data.comment_id,
+              created_at: res.data.created_at,
+              votes: res.data.votes,
+            },
+            ...currItems,
+          ]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -56,6 +58,7 @@ function CommentAdder({ setComments }) {
         <label htmlFor="comment">
           Comment
           <textarea
+            required
             value={addNewComment.body}
             onChange={handleChange}
             className="add-comment-box"
@@ -63,7 +66,8 @@ function CommentAdder({ setComments }) {
             id="comment"
             cols="80"
             rows="10"
-            required
+            maxlength="1000"
+            minLength="5"
           ></textarea>
           <Button variant="contained" onClick={handleSubmit}>
             Post A Comment
