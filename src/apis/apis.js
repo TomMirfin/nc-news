@@ -5,7 +5,7 @@ const api = axios.create({
 export function GetAllArticles(query) {
   console.log(query);
   return api
-    .get(`api/articles?sort_by=${query}`)
+    .get(`api/articles?sorted_by=${query}`)
     .then((response) => {
       return response;
     })
