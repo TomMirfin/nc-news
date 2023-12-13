@@ -1,7 +1,9 @@
 import axios from "axios";
+
 const api = axios.create({
   baseURL: "https://news-server-qoyx.onrender.com",
 });
+
 export function GetAllArticles() {
   return api
     .get(`api/articles`)
@@ -36,10 +38,10 @@ export function getAllComments(id) {
 }
 
 export function voteOnArticles(id, newVote) {
-  return api
-    .patch(`/api/articles/${id}`, newVote)
-    .then((res) => {
-      return res.data.votes;
+  return api.patch(`/api/articles/${id}`, newVote).then((res) => {
+    return res.data.votes;
+  });
+}
 
 export function postOnArticle(id, addNewComment) {
   return api
@@ -68,7 +70,6 @@ export function deleteAComment(id) {
     .delete(`/api/comments/${id}`)
     .then((response) => {
       return response;
-
     })
     .catch((err) => {
       console.log(err);

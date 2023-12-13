@@ -1,18 +1,8 @@
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import { postOnArticle } from "../../apis/apis";
-
-function CommentAdder({ addComment, setComments }) {
-  const { id } = useParams();
-
-  const [addNewComment, setAddNewComment] = useState({
-    username: username,
-    body: body,
-  });
-
-  const handleChange = (event) => 
+import { UserContext } from "../Context/usersContext";
 
 function CommentAdder({ setComments }) {
   const { id } = useParams();
@@ -36,7 +26,6 @@ function CommentAdder({ setComments }) {
   };
 
   const handleSubmit = (event) => {
-
     if (makeAComment.length > 5) {
       event.preventDefault();
       setMakeAComment("");
@@ -67,7 +56,6 @@ function CommentAdder({ setComments }) {
     }
   };
 
-
   return (
     <div>
       <form
@@ -75,32 +63,24 @@ function CommentAdder({ setComments }) {
         onSubmit={handleSubmit}
         className="add-a-comment-form"
       >
-
         <p>Post a comment as {user}</p>
         <label htmlFor="comment">
           Comment
           <textarea
             required
             value={makeAComment}
-
             onChange={handleChange}
             className="add-comment-box"
             name="body"
             id="comment"
             cols="80"
             rows="10"
-
-          ></textarea>
-
-            maxlength="1000"
-            minLength="5"
           ></textarea>
           {!submitted && (
             <Button variant="contained" onClick={handleSubmit}>
               Post A Comment
             </Button>
           )}
-
         </label>
       </form>
     </div>

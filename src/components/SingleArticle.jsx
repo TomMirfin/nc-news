@@ -6,8 +6,6 @@ import Comments from "./Comments/Comments";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { voteOnArticles } from "../apis/apis";
 
 function SingleArticle() {
@@ -30,15 +28,6 @@ function SingleArticle() {
       setPrevCounts((prevnum) => prevnum + 1);
       console.log(err, "<--err");
     });
-  };
-
-  const [count, setCount] = useState(0);
-
-  const handleOnClick = () => {
-    setCount((count) => count + 1);
-  };
-  const handleDecrement = () => {
-    if (count > 0) setCount((count) => count - 1);
   };
 
   useEffect(() => {
@@ -66,15 +55,13 @@ function SingleArticle() {
         <p>Votes {prevCounts}</p>
         <div>
           <ThumbUpIcon
-
+            style={{ fontSize: "xx-large" }}
             onClick={() => {
               handleOnClick();
             }}
           />
           <ThumbDownIcon
-
             style={{ fontSize: "xx-large" }}
-
             onClick={() => {
               handleDecrement();
             }}
