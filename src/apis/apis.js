@@ -34,6 +34,7 @@ export function getAllComments(id) {
       console.log(err);
     });
 }
+
 export function voteOnArticles(id, newVote) {
   console.log(newVote);
 
