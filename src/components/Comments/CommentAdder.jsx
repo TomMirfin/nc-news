@@ -27,7 +27,6 @@ function CommentAdder({ setComments }) {
     event.preventDefault();
     postOnArticle(id, addNewComment).then((res) => {
       if (res) {
-        console.log(res);
         setComments((currItems) => [
           {
             article_id: res.data.article_id,

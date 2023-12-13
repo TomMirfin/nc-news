@@ -36,7 +36,6 @@ export function getAllComments(id) {
 }
 
 export function postOnArticle(id, addNewComment) {
-  console.log(addNewComment);
   return api
     .post(`/api/articles/${id}/comments`, addNewComment)
     .then((res) => {
@@ -51,6 +50,17 @@ export function postOnArticle(id, addNewComment) {
 export function getAllUsers() {
   return api
     .get(`/api/users`)
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function deleteAComment(id) {
+  return api
+    .delete(`/api/comments/${id}`)
     .then((response) => {
       return response;
     })

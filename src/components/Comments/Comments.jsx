@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { getAllComments } from "../../apis/apis";
+import { deleteAComment, getAllComments } from "../../apis/apis";
 import { useParams } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
@@ -20,7 +20,21 @@ function Comments() {
     });
   }, []);
 
-  const handleDelete = () => {};
+  const handleDelete = (comment_id) => {
+    deleteAComment(comment_id).then((res) => {
+      const newComments = comments.filter(
+        (com) => com.comment_id !== comment_id
+      );
+      setComments(newComments);
+
+      if (res.status === 204) {
+        alert("Comment Deleted");
+      } else {
+        alert("Comment failed to delete");
+      }
+    });
+  };
+
   return (
     <Fade>
       <div>
@@ -29,10 +43,17 @@ function Comments() {
           comments.map((comment) => {
             return (
               <div className="single-comment">
+                {new Date(comment.created_at).toLocaleDateString("en-gb")}
+                {new Date(comment.created_at).toLocaleTimeString("en-gb")}
                 {comment.author === user ? (
                   <div>
                     <h5 className="single-comment">{comment.author} </h5>
-                    <p className="delete-comment" onClick={handleDelete}>
+                    <p
+                      className="delete-comment"
+                      onClick={() => {
+                        handleDelete(comment.comment_id);
+                      }}
+                    >
                       delete comment <DeleteIcon />
                     </p>
                   </div>
