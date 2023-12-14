@@ -63,7 +63,7 @@ function Articles() {
               <ArticleCard
                 created_at={article.created_at}
                 article={article}
-                key={uuid()}
+                key={article.id}
                 setViewSingleArticle={setViewSingleArticle}
                 setId={setId}
               />

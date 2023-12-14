@@ -34,7 +34,9 @@ function Comments() {
       }
     });
     setDeletedComment(false);
-    setDeletedComment(true);
+    setTimeout(() => {
+      setDeletedComment(true);
+    }, 1000);
   };
   console.log(deletedComment);
   return (
@@ -67,7 +69,11 @@ function Comments() {
                       </p>
                     ) : (
                       <p key={uuid()} className="comment-delete-success">
-                        Comment Deleted
+                        Comment post at{" "}
+                        {new Date(comment.created_at).toLocaleTimeString(
+                          "en-gb"
+                        )}
+                        Deleted
                       </p>
                     )}
                   </div>
