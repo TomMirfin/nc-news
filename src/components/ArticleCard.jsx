@@ -5,7 +5,13 @@ import SingleArticle from "./SingleArticle";
 import { Link } from "react-router-dom";
 
 import { Fade } from "react-awesome-reveal";
-export default function ArticleCard({ article, setViewSingleArticle, setId }) {
+export default function ArticleCard({
+  article,
+  setViewSingleArticle,
+  setId,
+  created_at,
+}) {
+  console.log(created_at);
   const handleClick = () => {
     setViewSingleArticle(true);
     setId(article.article_id);
@@ -38,6 +44,8 @@ export default function ArticleCard({ article, setViewSingleArticle, setId }) {
             </Button>
           </Link>
         </div>
+        <p>{new Date(created_at).toLocaleDateString("en-gb")}</p>
+        {new Date(created_at).toLocaleTimeString("en-gb")}
       </div>
     </Fade>
   );

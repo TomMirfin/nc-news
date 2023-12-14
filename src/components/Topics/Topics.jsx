@@ -19,7 +19,7 @@ function Topics() {
   }, []);
 
   useEffect(() => {
-    GetAllArticles().then((articles) => {
+    GetAllArticles("DESC").then((articles) => {
       setArticles(articles.data);
       setIsLoading(false);
       setFilteredArticles(articles.data);
@@ -32,7 +32,7 @@ function Topics() {
     const filterArticles = articles.filter(
       (article) => article.topic === selectTopic
     );
-    console.log(filterArticles);
+
     setFilteredArticles(filterArticles);
     setSelectTopic("");
   };
