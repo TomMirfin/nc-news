@@ -11,6 +11,7 @@ export default function ArticleCard({
   setId,
   created_at,
 }) {
+
   const handleClick = () => {
     setViewSingleArticle(true);
     setId(article.article_id);
