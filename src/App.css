@@ -427,6 +427,9 @@ h1 {
     font-size: large;
     margin-bottom: 40px;
   }
+  .login-button {
+    width: 2px;
+  }
 }
 
 @media (max-width: 2220px) {
