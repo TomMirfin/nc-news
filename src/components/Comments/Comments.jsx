@@ -26,7 +26,7 @@ function Comments() {
         (com) => com.comment_id !== comment_id
       );
       setComments(newComments);
-      comments.reverse();
+
       if (res.status === 204) {
         alert("Comment Deleted");
       } else {
@@ -34,7 +34,7 @@ function Comments() {
       }
     });
   };
-  comments.reverse();
+
   return (
     <Fade>
       <div>
