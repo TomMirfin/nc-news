@@ -40,8 +40,8 @@ function SingleArticle() {
         setisLoading(false);
       })
       .catch((err) => {
-        setApiError(err);
         setisLoading(false);
+        setApiError(err);
       });
   }, []);
 

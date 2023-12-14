@@ -20,10 +20,7 @@ export function GetSingleArticle(id) {
     console.log(response);
     if (response.status !== 200) {
       console.log(response);
-      return Promise.reject({
-        status: response.status,
-        message: response.message,
-      });
+      return "Bad Path";
     }
     return response;
   });

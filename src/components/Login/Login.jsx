@@ -13,7 +13,7 @@ function Login({ setLogin }) {
     event.preventDefault();
     setUser(selectedUser);
     console.log(selectedUser);
-    alert("logged in ");
+
     setLogin(true);
     localStorage.setItem("user", JSON.stringify(selectedUser));
   };

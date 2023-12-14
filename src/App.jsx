@@ -19,7 +19,7 @@ function App() {
   }, [login]);
   return (
     <>
-      {newUser === "" ? (
+      {!newUser ? (
         <UserProvider>
           <Login setLogin={setLogin} />
         </UserProvider>
