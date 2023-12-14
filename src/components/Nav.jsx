@@ -10,7 +10,7 @@ function Nav() {
   return (
     <nav className="nav">
       <Link to="/">
-        <h1>NC NEWS</h1>
+        <h1 className="nav-title">NC NEWS</h1>
       </Link>
       <h4>Welcome {user} </h4>
       <ul className="nav-icons">

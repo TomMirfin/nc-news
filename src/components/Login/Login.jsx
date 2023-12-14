@@ -46,7 +46,9 @@ function Login({ setLogin }) {
             )}
           </select>
         </label>
-        <Button onClick={handleClick}>Log In</Button>
+        <Button onClick={handleClick} className="login-button">
+          Log In
+        </Button>
       </form>
     </div>
   );
