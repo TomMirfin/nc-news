@@ -279,3 +279,9 @@ h1 {
 .select-sort_by {
   width: 250px;
 }
+
+.article-topic {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
