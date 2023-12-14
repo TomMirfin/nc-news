@@ -43,8 +43,8 @@ export default function ArticleCard({
             </Button>
           </Link>
         </div>
-        <p>{new Date(created_at).toLocaleDateString("en-gb")}</p>
-        {new Date(created_at).toLocaleTimeString("en-gb")}
+        <p>{new Date(article.created_at).toLocaleDateString("en-gb")}</p>
+        {new Date(article.created_at).toLocaleTimeString("en-gb")}
       </div>
     </Fade>
   );
