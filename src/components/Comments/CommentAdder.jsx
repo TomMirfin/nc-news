@@ -25,7 +25,6 @@ function CommentAdder({ setComments }) {
   };
 
   const handleSubmit = (event) => {
-
     if (makeAComment.length > 5) {
       event.preventDefault();
       setMakeAComment("");
@@ -65,7 +64,6 @@ function CommentAdder({ setComments }) {
       >
         <p>Post a comment as {user}</p>
         <label htmlFor="comment">
-          Comment
           <textarea
             required
             value={makeAComment}
