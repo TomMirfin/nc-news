@@ -279,3 +279,11 @@ h1 {
 .select-sort_by {
   width: 250px;
 }
+
+.character-error {
+  color: red;
+}
+
+.comment-post-success {
+  color: rgb(22, 201, 22);
+}
