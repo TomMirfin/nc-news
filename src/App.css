@@ -291,3 +291,8 @@ h1 {
 .comment-delete-success {
   color: rgb(22, 201, 22);
 }
+
+.error-message {
+  text-align: center;
+  font-size: xx-large;
+}

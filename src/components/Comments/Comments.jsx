@@ -32,6 +32,7 @@ function Comments() {
         alert("Comment failed to delete");
       }
     });
+    setDeletedComment(false);
   };
 
   return (
@@ -55,7 +56,6 @@ function Comments() {
                         className="delete-comment"
                         onClick={() => {
                           handleDelete(comment.comment_id);
-                          setDeletedComment(false);
                         }}
                       >
                         delete comment <DeleteIcon />

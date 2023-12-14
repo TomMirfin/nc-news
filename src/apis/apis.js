@@ -16,14 +16,17 @@ export function GetAllArticles(query) {
 }
 
 export function GetSingleArticle(id) {
-  return api
-    .get(`/api/articles/${id}`)
-    .then((response) => {
-      return response;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return api.get(`/api/articles/${id}`).then((response) => {
+    console.log(response);
+    if (response.status !== 200) {
+      console.log(response);
+      return Promise.reject({
+        status: response.status,
+        message: response.message,
+      });
+    }
+    return response;
+  });
 }
 
 export function getAllComments(id) {

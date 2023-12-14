@@ -27,6 +27,7 @@ function App() {
               <Route path="/articles/:id" element={<SingleArticle />} />
               <Route path="/articles/:id/comments" element={<Comments />} />
               <Route path="/api/:topic" element={<Topics />} />
+              <Route path="/*" element={<Error />} />
             </Routes>
           </div>
         </UserProvider>

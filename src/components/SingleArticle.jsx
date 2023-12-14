@@ -7,12 +7,14 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
 import { voteOnArticles } from "../apis/apis";
+import Error from "./Error/Error";
 
 function SingleArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
   const [loading, setisLoading] = useState(true);
   const [prevCounts, setPrevCounts] = useState(0);
+  const [apiError, setApiError] = useState(null);
 
   const handleOnClick = () => {
     setPrevCounts((prevnum) => prevnum + 1);
@@ -31,15 +33,22 @@ function SingleArticle() {
   };
 
   useEffect(() => {
-    GetSingleArticle(id).then((res) => {
-      setArticle(res.data);
-      setPrevCounts(res.data[0].votes);
-      setisLoading(false);
-    });
+    GetSingleArticle(id)
+      .then((res) => {
+        setArticle(res.data);
+        setPrevCounts(res.data[0].votes);
+        setisLoading(false);
+      })
+      .catch((err) => {
+        setApiError(err);
+        setisLoading(false);
+      });
   }, []);
 
   if (loading) {
     return <p className="loading">Loading your article</p>;
+  } else if (apiError) {
+    return <Error message={apiError} />;
   }
 
   return (
