@@ -287,3 +287,7 @@ h1 {
 .comment-post-success {
   color: rgb(22, 201, 22);
 }
+
+.comment-delete-success {
+  color: rgb(22, 201, 22);
+}

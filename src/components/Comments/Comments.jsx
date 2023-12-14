@@ -12,6 +12,7 @@ function Comments() {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
   const { user } = useContext(UserContext);
+  const [deletedComment, setDeletedComment] = useState(true);
 
   useEffect(() => {
     getAllComments(id).then((res) => {
@@ -27,9 +28,7 @@ function Comments() {
       );
       setComments(newComments);
 
-      if (res.status === 204) {
-        alert("Comment Deleted");
-      } else {
+      if (res.status !== 204) {
         alert("Comment failed to delete");
       }
     });
@@ -51,14 +50,19 @@ function Comments() {
                 {comment.author === user ? (
                   <div>
                     <h5 className="single-comment">{comment.author} </h5>
-                    <p
-                      className="delete-comment"
-                      onClick={() => {
-                        handleDelete(comment.comment_id);
-                      }}
-                    >
-                      delete comment <DeleteIcon />
-                    </p>
+                    {deletedComment ? (
+                      <p
+                        className="delete-comment"
+                        onClick={() => {
+                          handleDelete(comment.comment_id);
+                          setDeletedComment(false);
+                        }}
+                      >
+                        delete comment <DeleteIcon />
+                      </p>
+                    ) : (
+                      <p className="comment-delete-success">Comment Deleted</p>
+                    )}
                   </div>
                 ) : (
                   <h5>{comment.author} </h5>
