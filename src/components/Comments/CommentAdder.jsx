@@ -65,7 +65,6 @@ function CommentAdder({ setComments }) {
       >
         <p>Post a comment as {user}</p>
         <label htmlFor="comment">
-          Comment
           <textarea
             required
             value={makeAComment}
