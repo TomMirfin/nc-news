@@ -47,10 +47,7 @@ function Comments() {
         {!loadingComments ? (
           comments.map((comment) => {
             return (
-
               <div className="single-comment" key={uuid()}>
-
- 
                 <div>
                   {new Date(comment.created_at).toLocaleDateString("en-gb")}
                 </div>
@@ -72,11 +69,7 @@ function Comments() {
                       </p>
                     ) : (
                       <p key={uuid()} className="comment-delete-success">
-                        Comment post at{" "}
-                        {new Date(comment.created_at).toLocaleTimeString(
-                          "en-gb"
-                        )}
-                        Deleted
+                        Deleting comment
                       </p>
                     )}
                   </div>
