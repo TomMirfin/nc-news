@@ -3,6 +3,8 @@ import { GetAllArticles } from "../apis/apis";
 import ArticleCard from "./ArticleCard";
 import SingleArticle from "./SingleArticle";
 import Button from "@mui/material/Button";
+import { v4 as uuid } from "uuid";
+
 function Articles() {
   const [articles, setArticles] = useState([]);
   const [viewSingleArticle, setViewSingleArticle] = useState(false);
@@ -61,7 +63,7 @@ function Articles() {
               <ArticleCard
                 created_at={article.created_at}
                 article={article}
-                key={article.id}
+                key={uuid()}
                 setViewSingleArticle={setViewSingleArticle}
                 setId={setId}
               />

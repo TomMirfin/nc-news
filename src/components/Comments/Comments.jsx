@@ -6,6 +6,7 @@ import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import CommentAdder from "./CommentAdder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UserContext } from "../Context/usersContext";
+import { v4 as uuid } from "uuid";
 
 function Comments() {
   const { id } = useParams();
@@ -33,8 +34,9 @@ function Comments() {
       }
     });
     setDeletedComment(false);
+    setDeletedComment(true);
   };
-
+  console.log(deletedComment);
   return (
     <Fade>
       <div>
@@ -43,16 +45,19 @@ function Comments() {
         {!loadingComments ? (
           comments.map((comment) => {
             return (
-              <div className="single-comment">
+              <div className="single-comment" key={uuid()}>
                 <div>
                   {new Date(comment.created_at).toLocaleDateString("en-gb")}
                 </div>
                 {new Date(comment.created_at).toLocaleTimeString("en-gb")}
                 {comment.author === user ? (
-                  <div>
-                    <h5 className="single-comment">{comment.author} </h5>
+                  <div key={uuid()}>
+                    <h5 className="single-comment" key={uuid()}>
+                      {comment.author}{" "}
+                    </h5>
                     {deletedComment ? (
                       <p
+                        key={uuid()}
                         className="delete-comment"
                         onClick={() => {
                           handleDelete(comment.comment_id);
@@ -61,27 +66,33 @@ function Comments() {
                         delete comment <DeleteIcon />
                       </p>
                     ) : (
-                      <p className="comment-delete-success">Comment Deleted</p>
+                      <p key={uuid()} className="comment-delete-success">
+                        Comment Deleted
+                      </p>
                     )}
                   </div>
                 ) : (
-                  <h5>{comment.author} </h5>
+                  <h5 key={uuid()}>{comment.author} </h5>
                 )}
-                <p>{comment.body}</p>
+                <p key={uuid()}>{comment.body}</p>
               </div>
             );
           })
         ) : (
-          <p>
+          <p key={uuid()}>
             Comments Are Loading <HourglassTopIcon />
           </p>
         )}
         {!loadingComments && comments.length > 0 ? (
           comments.map((comment) => {
-            return <p className="single-comment">{comment.body}</p>;
+            return (
+              <p key={uuid()} className="single-comment">
+                {comment.body}
+              </p>
+            );
           })
         ) : (
-          <p>No Comments To Show</p>
+          <p key={uuid()}>No Comments To Show</p>
         )}
       </div>
     </Fade>

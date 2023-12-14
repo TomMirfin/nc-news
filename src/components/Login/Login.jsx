@@ -2,6 +2,7 @@ import { getAllUsers } from "../../apis/apis";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Context/usersContext";
 import Button from "@mui/material/Button";
+import { v4 as uuid } from "uuid";
 
 function Login({ setLogin }) {
   const { setUser } = useContext(UserContext);
@@ -39,7 +40,7 @@ function Login({ setLogin }) {
           >
             {userList.length > 0 ? (
               userList.map((person) => {
-                return <option>{person.username}</option>;
+                return <option key={uuid()}>{person.username}</option>;
               })
             ) : (
               <option> No users To Display</option>
