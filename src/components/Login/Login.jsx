@@ -7,19 +7,19 @@ import { v4 as uuid } from "uuid";
 function Login({ setLogin }) {
   const { setUser } = useContext(UserContext);
   const [userList, setUserList] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUser(event.target.value);
-
+    setUser(selectedUser);
+    console.log(selectedUser);
+    alert("logged in ");
     setLogin(true);
+    localStorage.setItem("user", JSON.stringify(selectedUser));
   };
   const handleChange = (event) => {
+    setSelectedUser(event.target.value);
     setUser(event.target.value);
-  };
-
-  const handleClick = () => {
-    setLogin(true);
   };
 
   useEffect(() => {
@@ -37,6 +37,7 @@ function Login({ setLogin }) {
             name="userName"
             onChange={handleChange}
             className="select-container"
+            value={selectedUser}
           >
             {userList.length > 0 ? (
               userList.map((person) => {
@@ -47,7 +48,7 @@ function Login({ setLogin }) {
             )}
           </select>
         </label>
-        <Button onClick={handleClick}>Log In</Button>
+        <Button type="submit">Log In</Button>
       </form>
     </div>
   );
