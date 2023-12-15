@@ -440,3 +440,20 @@ h1 {
 
 @media (max-width: 580px) {
 }
+
+.character-error {
+  color: red;
+}
+
+.comment-post-success {
+  color: rgb(22, 201, 22);
+}
+
+.comment-delete-success {
+  color: rgb(22, 201, 22);
+}
+
+.error-message {
+  text-align: center;
+  font-size: xx-large;
+}

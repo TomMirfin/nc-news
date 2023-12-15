@@ -26,34 +26,29 @@ function CommentAdder({ setComments }) {
   };
 
   const handleSubmit = (event) => {
-    if (makeAComment.length > 5) {
-      event.preventDefault();
-      setMakeAComment("");
-      setsubmitted(true);
-      postOnArticle(id, addNewComment)
-        .then((res) => {
-          alert("Comment Added");
-          setsubmitted(false);
-          if (res) {
-            setComments((currItems) => [
-              {
-                article_id: res.data.article_id,
-                author: res.data.author,
-                body: res.data.body,
-                comment_id: res.data.comment_id,
-                created_at: res.data.created_at,
-                votes: res.data.votes,
-              },
-              ...currItems,
-            ]);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      alert("Your Comment must be more than 5 characters");
-    }
+    event.preventDefault();
+    setMakeAComment("");
+    setsubmitted(true);
+    postOnArticle(id, addNewComment)
+      .then((res) => {
+        setsubmitted(false);
+        if (res) {
+          setComments((currItems) => [
+            {
+              article_id: res.data.article_id,
+              author: res.data.author,
+              body: res.data.body,
+              comment_id: res.data.comment_id,
+              created_at: res.data.created_at,
+              votes: res.data.votes,
+            },
+            ...currItems,
+          ]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -74,12 +69,21 @@ function CommentAdder({ setComments }) {
             id="comment"
             cols="80"
             rows="10"
+            placeholder="Please start typing to add a comment..."
           ></textarea>
-          {!submitted && (
+          {!submitted && makeAComment.length > 5 ? (
             <Button variant="contained" onClick={handleSubmit}>
               Post A Comment
             </Button>
+          ) : (
+            !submitted &&
+            makeAComment.length > 1 && (
+              <p className="character-error">
+                *Comment must be over 5 characters long
+              </p>
+            )
           )}
+          {submitted && <p className="comment-post-success">Comment Posted</p>}
         </label>
       </form>
     </div>

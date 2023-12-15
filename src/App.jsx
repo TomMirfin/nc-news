@@ -5,15 +5,22 @@ import SingleArticle from "./components/SingleArticle";
 import Nav from "./components/Nav";
 import Comments from "./components/Comments/Comments";
 import { UserProvider } from "./components/Context/usersContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./components/Login/Login";
 import Topics from "./components/Topics/Topics";
+import PathError from "./components/Error/PathError";
 
 function App() {
   const [login, setLogin] = useState(false);
+  const [newUser, setNewUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    setNewUser(storedUser);
+  }, [login]);
   return (
     <>
-      {!login ? (
+      {!newUser ? (
         <UserProvider>
           <Login setLogin={setLogin} />
         </UserProvider>
@@ -21,12 +28,17 @@ function App() {
         <UserProvider>
           <div>
             <Nav />
-
             <Routes>
               <Route path="/" element={<Articles />} />
               <Route path="/articles/:id" element={<SingleArticle />} />
               <Route path="/articles/:id/comments" element={<Comments />} />
               <Route path="/api/:topic" element={<Topics />} />
+              <Route
+                path="/*"
+                element={
+                  <PathError message="Bad path please go back to the homepage and try again" />
+                }
+              />
             </Routes>
           </div>
         </UserProvider>
