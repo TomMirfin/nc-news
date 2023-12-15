@@ -37,7 +37,6 @@ function Topics() {
     setSelectTopic("");
   };
   const handleChange = (event) => {
-    console.log(event.target.value);
     setSelectTopic(event.target.value);
   };
 
