@@ -44,7 +44,7 @@ function Login({ setLogin }) {
                 return <option key={uuid()}>{person.username}</option>;
               })
             ) : (
-              <option> No users To Display</option>
+              <option>Please Wait Users Loading</option>
             )}
           </select>
         </label>

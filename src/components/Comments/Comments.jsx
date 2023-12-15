@@ -45,7 +45,7 @@ function Comments() {
         <CommentAdder setComments={setComments} />
 
         {!loadingComments ? (
-          comments.map((comment) => {
+          comments.reverse().map((comment) => {
             return (
               <div className="single-comment" key={uuid()}>
                 <div>
