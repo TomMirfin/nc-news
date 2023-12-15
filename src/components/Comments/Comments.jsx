@@ -57,21 +57,16 @@ function Comments() {
                     <h5 className="single-comment" key={uuid()}>
                       {comment.author}{" "}
                     </h5>
-                    {deletedComment ? (
-                      <p
-                        key={uuid()}
-                        className="delete-comment"
-                        onClick={() => {
-                          handleDelete(comment.comment_id);
-                        }}
-                      >
-                        delete comment <DeleteIcon />
-                      </p>
-                    ) : (
-                      <p key={uuid()} className="comment-delete-success">
-                        Deleting comment
-                      </p>
-                    )}
+
+                    <p
+                      key={uuid()}
+                      className="delete-comment"
+                      onClick={() => {
+                        handleDelete(comment.comment_id);
+                      }}
+                    >
+                      delete comment <DeleteIcon />
+                    </p>
                   </div>
                 ) : (
                   <h5 key={uuid()}>{comment.author} </h5>

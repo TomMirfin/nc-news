@@ -8,6 +8,7 @@ import { UserProvider } from "./components/Context/usersContext";
 import { useState, useEffect } from "react";
 import Login from "./components/Login/Login";
 import Topics from "./components/Topics/Topics";
+import PathError from "./components/Error/PathError";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -32,7 +33,12 @@ function App() {
               <Route path="/articles/:id" element={<SingleArticle />} />
               <Route path="/articles/:id/comments" element={<Comments />} />
               <Route path="/api/:topic" element={<Topics />} />
-              <Route path="/*" element={<Error />} />
+              <Route
+                path="/*"
+                element={
+                  <PathError message="Bad path please go back to the homepage and try again" />
+                }
+              />
             </Routes>
           </div>
         </UserProvider>

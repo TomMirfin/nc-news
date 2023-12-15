@@ -48,7 +48,7 @@ function SingleArticle() {
   if (loading) {
     return <p className="loading">Loading your article</p>;
   } else if (apiError) {
-    return <Error message={apiError} />;
+    return <Error message="Article Not Found" />;
   }
 
   return (

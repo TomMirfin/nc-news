@@ -69,6 +69,7 @@ function CommentAdder({ setComments }) {
             id="comment"
             cols="80"
             rows="10"
+            placeholder="Please start typing to add a comment..."
           ></textarea>
           {!submitted && makeAComment.length > 5 ? (
             <Button variant="contained" onClick={handleSubmit}>
