@@ -55,13 +55,19 @@ function SingleArticle() {
     <div className="single-article-container">
       <div className="single-article">
         <h1>{article[0].title}</h1>
-        <img src={article[0].article_img_url} alt={article[0].title} />
-        <p>
-          {article[0].author} {article[0].topic}
+        <img
+          src={article[0].article_img_url}
+          alt={article[0].title}
+          className="single-article-img"
+        />
+
+        <p className="article-topic">
+          <h4> Author: </h4> {article[0].author} <h4>Topic: </h4>
+          {article[0].topic}
         </p>
         <p>{article[0].body}</p>
 
-        <p>Votes {prevCounts}</p>
+        <p className="votes-text">Votes {prevCounts}</p>
         <div>
           <ThumbUpIcon
             style={{ fontSize: "xx-large", marginRight: "10px" }}

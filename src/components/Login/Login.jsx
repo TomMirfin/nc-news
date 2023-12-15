@@ -48,7 +48,9 @@ function Login({ setLogin }) {
             )}
           </select>
         </label>
+
         <Button type="submit">Log In</Button>
+
       </form>
     </div>
   );
